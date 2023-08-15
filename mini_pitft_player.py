@@ -12,8 +12,8 @@ import digitalio
 import board
 from animatedgif import AnimatedGif
 import numpy  # pylint: disable=unused-import
-from adafruit_seesaw import seesaw, rotaryio, digitalio as ss_digitalio  # pylint: disable=unused-import
 from adafruit_rgb_display import st7789
+from adafruit_rgb_display.rgb import color565
 from gpiozero import RotaryEncoder, PWMLED
 
 
@@ -83,5 +83,9 @@ disp = st7789.ST7789(
     rst=None,
     baudrate=BAUDRATE,
 )
+backlight = digitalio.DigitalInOut(board.D22)
+backlight.switch_to_output()
+backlight.value = True
+disp.fill(color565(255, 255, 255))
 
 gif_player = TFTAnimatedGif(disp, include_delays=False, folder="images")

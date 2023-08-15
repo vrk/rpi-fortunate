@@ -68,7 +68,7 @@ class AnimatedGif:
         self._frames.clear()
         for frame in range(self._frame_count):
             image.seek(frame)
-            snap= image.convert("RGBA")
+            snap= image.convert("RGB")
             # Create blank image for drawing.
             # Make sure to create image with mode 'RGB' for full color.
             frame_object = Frame(duration=self._duration)
